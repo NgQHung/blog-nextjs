@@ -9,7 +9,6 @@ const Home: NextPage = ({
   blogData,
   tagsData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  // console.log(blogData)
   const [filterWord, setFilterword] = useState<string[]>([])
   const [selectedIdx, setSelectedIdx] = useState<number[]>([])
   const filteredBlog: BlogPost[] = useMemo(() => {
@@ -29,10 +28,6 @@ const Home: NextPage = ({
       setFilterword([...filterWord, tag.innerText])
     }
   }
-
-  useEffect(() => {
-    console.log(filterWord)
-  }, [selectedIdx])
 
   return (
     <main className="layout">
@@ -99,10 +94,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
       }
     }
   }
-  // console.log(tags)
   // solving JSON serializable error
   blogs = JSON.parse(JSON.stringify(blogs))
-  // console.log(blogs)
   return {
     props: {
       blogData: blogs || null,

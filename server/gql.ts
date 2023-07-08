@@ -27,7 +27,6 @@ export function discussionGql(ghDiscussionCategoryId: string | undefined) {
 }
 
 export function discussionDetailGql(postId: number | undefined) {
-  console.log("postId: ", postId)
   return `{
         repository(owner: "NgQHung", name: "blog-nextjs"){
             discussion(number: ${postId}){

@@ -25,7 +25,6 @@ export default BlopPost
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const route: string[] | string | undefined = context.query.id
-  console.log(route)
   const id = Number(route)
   let blogDetail = await getBlogDetail(id)
   return {

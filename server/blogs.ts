@@ -15,7 +15,7 @@ export async function getBlogs(): Promise<BlogPost[]> {
     body: JSON.stringify({ query: discussionGql(DISCUSSION_CATEGORY_ID) }),
   })
   let res = await response.json()
-  const discussions = res.data.repository.discussions.nodes
+  const discussions = res.data ? res.data.repository.discussions.nodes : []
   const posts = discussions.map((discussion: any): BlogPost => {
     const {
       title,
@@ -68,7 +68,6 @@ export async function getBlogDetail(blogId: number): Promise<BlogDetail> {
   })
   let res = await response.json()
   let discussion = res.data.repository.discussion
-  // console.log(res.data.repository)
   const {
     author: { url: authorUrl, login: authorName, avatarUrl: authorAvatar },
     createdAt,
